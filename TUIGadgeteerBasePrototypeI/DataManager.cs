@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Microsoft.SPOT;
 
-namespace PrototipoPelotaTerapeuticaBase
+namespace TUIGadgeteerBasePrototypeI
 {
     class DataManager
     {

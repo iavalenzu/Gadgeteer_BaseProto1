@@ -7,7 +7,7 @@
     <!--This is an executable-->
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PrototipoPelotaTerapeuticaBase</RootNamespace>
+    <RootNamespace>TUIGadgeteerBasePrototypeI</RootNamespace>
     <AssemblyName>PrototipoPelotaTerapeuticaBase</AssemblyName>
     <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,7 +39,10 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="ByteExtensions.cs" />
+    <Compile Include="CollectionsUtilities.cs" />
+    <Compile Include="HMACSHA1.cs" />
+    <Compile Include="HttpsRequest.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="Program.generated.cs">
@@ -68,6 +71,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GHI.Premium.System, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GHI.Premium.SystemUpdate, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.Gadgeteer.FEZSpider, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -92,6 +96,8 @@
     <Reference Include="Microsoft.SPOT.Security.PKCS11" />
     <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Http" />
     <Reference Include="System.IO" />
     <Reference Include="System.Net.Security" />
     <Reference Include="System.Security" />

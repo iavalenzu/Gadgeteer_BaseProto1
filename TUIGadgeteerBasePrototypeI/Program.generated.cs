@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PrototipoPelotaTerapeuticaBase {
+namespace TUIGadgeteerBasePrototypeI {
     using Gadgeteer;
     using GTM = Gadgeteer.Modules;
     

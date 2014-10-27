@@ -27,15 +27,11 @@ using Gadgeteer.Networking;
 
 
 
-namespace PrototipoPelotaTerapeuticaBase
+namespace TUIGadgeteerBasePrototypeI
 {
     public partial class Program
     {
 
-        private uint _axisX = 20;
-        private uint _axisY = 20;
-
-        private bool _modeUp = true;
         private Window mainWindow;
 
         private string rootDirectory;
@@ -55,7 +51,6 @@ namespace PrototipoPelotaTerapeuticaBase
 
             sdCard.SDCardMounted += new SDCard.SDCardMountedEventHandler(sdCard_SDCardMounted);
 
-
             Debug.Print("Program Started");
         }
 
@@ -70,31 +65,24 @@ namespace PrototipoPelotaTerapeuticaBase
 
             ListNetworkInterfaces();
 
-            
-            /*
-             * Algoritmo para generar el hmac necesarion para usar el api de twitter
-             **/ 
-            KeyedHashAlgorithm kha = new KeyedHashAlgorithm(KeyedHashAlgorithmType.HMACSHA1, "key");
+            String _oauth_consumer_key = "B7Iv0UO3POq9Wmq8wqTBRJU4P";
+            String _oauth_token = "2263254559-bf9KdsZIXFLRftXVtzcHFaFhrCyXC2DnR49SMJ2";
+            String _oauth_consumer_secret = "ZX3XtPezAmKPDg3JoHsxNgbK0ChzokkkaQ7Ub05docptodFwWW";
+            String _oauth_token_secret = "GiDBFi7hpnHpsPPvfOIzo9WEBEM9PBrjp8iJMeQghLQCD";
 
-            byte[] res = kha.ComputeHash(Encoding.UTF8.GetBytes("HOlassss"));
+            String http_method = "POST";
+            String http_uri = "http://api.twitter.com/1.1/statuses/update.json";
 
-            Debug.Print(Encoding.UTF8.GetChars(res).ToString());
+            Hashtable http_get = new Hashtable();
+            //http_get.Add("include_entities", "true");
 
+            Hashtable http_post = new Hashtable();
+            http_post.Add("status", "Hello Ladies + Gentlemen, a signed OAuth request!");
 
+            TwitterAPI twitter = new TwitterAPI(_oauth_consumer_key, _oauth_token, _oauth_consumer_secret, _oauth_token_secret, http_method, http_uri, http_get, http_post);
 
-
-            POSTContent post_content;
-            String twitter_url;
-            String post_string;
-
-            twitter_url = "";
-            post_string = "";
-            post_content = POSTContent.CreateTextBasedContent(post_string);
-
-            HttpRequest request = HttpHelper.CreateHttpPostRequest(twitter_url, post_content, null);
-
+            HttpRequest request = twitter.createSignedRequest();
             request.ResponseReceived += new HttpRequest.ResponseHandler(ResponseReceived);
-            request.AddHeaderField("", "");
             request.SendRequest();
 
         }
@@ -104,9 +92,30 @@ namespace PrototipoPelotaTerapeuticaBase
 
             Debug.Print("Response received handler!!!");
 
-            if (response.StatusCode != "200") 
+            if (response.StatusCode != "200")
             {
                 Debug.Print("Ha ocurrido un error: " + response.StatusCode);
+            }
+            else 
+            {
+                StreamReader sr = new StreamReader(response.Stream);
+                String content;
+
+                if (sr == null) 
+                {
+                    Debug.Print("El streamreader es NULO!!");
+                    return;
+                }
+
+                content = sr.ReadToEnd();
+
+                if (content == null) 
+                {
+                    Debug.Print("El content es NULO!!");
+                    return;
+                }
+
+                Debug.Print(content);
             }
 
 
@@ -119,7 +128,7 @@ namespace PrototipoPelotaTerapeuticaBase
             var settings = ethernet.NetworkSettings;
 
             Debug.Print("------------------------------------------------");
-            Debug.Print("MAC: " + ByteExtensions.ToHexString(settings.PhysicalAddress, "-"));
+            Debug.Print("MAC: " + Utilities.ToHexString(settings.PhysicalAddress, "-"));
             Debug.Print("IP Address:   " + settings.IPAddress);
             Debug.Print("DHCP Enabled: " + settings.IsDhcpEnabled);
             Debug.Print("Subnet Mask:  " + settings.SubnetMask);
@@ -186,7 +195,29 @@ namespace PrototipoPelotaTerapeuticaBase
 
         void TouchDown(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
         {
-            proceso();
+            //proceso();
+            Debug.Print("TouchDown!!");
+
+
+
+/*
+            POSTContent post_content;
+            String twitter_url;
+            String post_string;
+
+            twitter_url = "http://www.google.cl";
+            post_string = "";
+            //post_content = POSTContent.CreateTextBasedContent(post_string);
+            post_content = new POSTContent();
+
+            //HttpRequest request = HttpHelper.CreateHttpPostRequest(twitter_url, post_content, null);
+            HttpRequest request = HttpHelper.CreateHttpGetRequest(twitter_url);
+
+            request.ResponseReceived += new HttpRequest.ResponseHandler(ResponseReceived);
+            //request.AddHeaderField("", "");
+            request.SendRequest();
+*/
+
         }
 
         void proceso() 

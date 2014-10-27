@@ -1,18 +1,14 @@
 using System;
 using Microsoft.SPOT;
 
-namespace PrototipoPelotaTerapeuticaBase
+namespace TUIGadgeteerBasePrototypeI
 {
-    class ByteExtensions
+    static class Utilities
     {
 
         private static char[] _hexCharacterTable = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
-#if MF_FRAMEWORK_VERSION_V4_1
-    public static string ToHexString(byte[] array, string delimiter = "-")
-#else
         public static string ToHexString(this byte[] array, string delimiter = "-")
-#endif
         {
             if (array.Length > 0)
             {

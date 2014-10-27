@@ -22,7 +22,7 @@ using Gadgeteer.Modules.GHIElectronics;
 using Gadgeteer.Networking;
 
 
-namespace PrototipoPelotaTerapeuticaBase
+namespace TUIGadgeteerBasePrototypeI
 {
     class Graphics
     {
