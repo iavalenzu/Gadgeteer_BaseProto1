@@ -7,6 +7,9 @@ namespace TUIGadgeteerBasePrototypeI
     class CollectionsUtilities
     {
 
+        /**
+        * Ordena las llaves del hashtable usando como algoritmo BubbleSort
+        */
         public static String[] orderHashTableKeys(Hashtable hash_table) 
         {
             String[] hash_keys;             
@@ -19,11 +22,17 @@ namespace TUIGadgeteerBasePrototypeI
         
         } 
 
+        /**
+        * Ordena el arreglo dado usando el algoritmo BubbleSort
+        */
         public static String[] orderArray(String[] array)
         {
             return bubbleSort(array);
         }
 
+        /**
+        * Retorna un arreglo ordenado
+        */
         public static String[] bubbleSort(String[] array)
         {
             String tmp;

@@ -37,6 +37,10 @@ namespace TUIGadgeteerBasePrototypeI
         }
 
 
+        /**
+        * Genera un grafico en la pantalla del modulo Screen del Gadgeteer usando las frecuencias dadas
+        */
+
         public Bitmap createFrecuenciesChart(int[] frequencies)
         {
 
@@ -248,6 +252,11 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 */
+
+        /**
+        * Guarda la imagen del grafico de frecuencias en la SD
+        */
+
         public void saveChart(GT.StorageDevice storage, Bitmap chart, String pathGraphName)
         {
 
@@ -264,6 +273,9 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 
+        /**
+        * Muestra en la pantalla del modulo Screen el texto dado
+        */ 
         public void showMsgOnScreen(String msg)
         {
 
@@ -278,6 +290,10 @@ namespace TUIGadgeteerBasePrototypeI
 
 
         }
+
+        /**
+        * Muestra en la pantalla el grafico guardado en la filepath dado
+        */
 
         public void showChart(GT.StorageDevice storage, String pathGraphName)
         {

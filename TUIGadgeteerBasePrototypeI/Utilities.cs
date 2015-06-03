@@ -8,6 +8,9 @@ namespace TUIGadgeteerBasePrototypeI
 
         private static char[] _hexCharacterTable = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
+        /**
+        * Genera una cadena hexadecimal a partir de un arreglo de bytes
+        */
         public static string ToHexString(this byte[] array, string delimiter = "-")
         {
             if (array.Length > 0)

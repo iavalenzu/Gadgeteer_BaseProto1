@@ -21,6 +21,11 @@ using Gadgeteer.Networking;
 
 namespace TUIGadgeteerBasePrototypeI
 {
+
+    /**
+    * Esta clase corresponde a un wrapper del API dado por Twitter, permite generar post
+    */
+
     class TwitterAPI
     {
         private String http_uri = "";

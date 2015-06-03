@@ -6,6 +6,10 @@ using System.Text;
 
 namespace TUIGadgeteerBasePrototypeI
 {
+
+    /**
+    * Genera el HMACSHA1 del mensaje usando la llave dada 
+    */    
     class HMACSHA1
     {
         static public byte[] hash(byte[] _message, byte[] _key)

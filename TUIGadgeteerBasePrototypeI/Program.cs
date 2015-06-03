@@ -43,22 +43,31 @@ namespace TUIGadgeteerBasePrototypeI
         void ProgramStarted()
         {
 
+            //Se inicializa el modulo pantall
             SetupDisplay();
+            //Se inicializa el modulo ethernet
             SetupEthernet();
 
+            //Se crea el manejador de la pantall
             graphics = new Graphics(display);
 
-
+            //Se define el evento del modulo SD que indica cuando la SD ha sido insertada
             sdCard.SDCardMounted += new SDCard.SDCardMountedEventHandler(sdCard_SDCardMounted);
 
             Debug.Print("Program Started");
         }
 
+        /**
+        * Esta funcion se llama cuando la conexion a la red esta caida
+        */
         void OnNetworkDown(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
         {
             Debug.Print("Network down.");
         }
 
+        /**
+        * Esta funcion se llama cuando la conexion a la red esta funcionando
+        */
         void OnNetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
         {
             Debug.Print("Network up.");
@@ -79,6 +88,9 @@ namespace TUIGadgeteerBasePrototypeI
             Hashtable http_post = new Hashtable();
             http_post.Add("status", "Hello Ladies + Gentlemen, a signed OAuth request!");
 
+            /**
+            * Se hace una llamada al api de twitter para generar una entrada con los valores leidos de la SD
+            */
             TwitterAPI twitter = new TwitterAPI(_oauth_consumer_key, _oauth_token, _oauth_consumer_secret, _oauth_token_secret, http_method, http_uri, http_get, http_post);
 
             HttpRequest request = twitter.createSignedRequest();
@@ -87,6 +99,9 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 
+        /**
+        * Esta funcion se llama cuando se recibe una respuesta de la red luego se hacer un request
+        */
         void ResponseReceived(HttpRequest sender, HttpResponse response) 
         {
 
@@ -121,7 +136,9 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 
-
+        /**
+        * Genera una lista con las interfaces detectadas
+        */
         void ListNetworkInterfaces()
         {
 
@@ -136,6 +153,10 @@ namespace TUIGadgeteerBasePrototypeI
             Debug.Print("------------------------------------------------");
         }
 
+
+        /**
+        * Inicializa el modulo Ethernet
+        */
         void SetupEthernet()
         {
 
@@ -160,7 +181,9 @@ namespace TUIGadgeteerBasePrototypeI
         }
 
        
-
+        /**
+        * Verifica si la tarjeta SD esta montada o insertada, en caso contrario monta la tarjeta
+        */    
         bool VerifySDCard()
         {
             if (!sdCard.IsCardInserted || !sdCard.IsCardMounted)
@@ -186,6 +209,9 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 
+        /**
+        * Inicializa el modulo pantalla y define los eventos asociados 
+        */
         void SetupDisplay()
         {
             mainWindow = display.WPFWindow;
@@ -193,6 +219,10 @@ namespace TUIGadgeteerBasePrototypeI
 
         }
 
+
+        /**
+        * Define el evento touch de la pantalla
+        */
         void TouchDown(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
         {
             //proceso();
